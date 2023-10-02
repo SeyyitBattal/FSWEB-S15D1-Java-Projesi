@@ -26,12 +26,13 @@ public class MarketList {
                     case "2":
                         System.out.println("Cıkarılmasını istediğiniz elemanları giriniz: ");
                         String cikarilan = scanner.next();
-                        groceryList.remove(cikarilan);
+                        removeItems(cikarilan);
                         break;
 
                     default:
                         System.out.println("Uygun secim yapilmadi.");
                 }
+                printSorted();
 
             } catch (Exception ex) {
                 System.out.println("Gecersiz secim");
@@ -45,7 +46,7 @@ public class MarketList {
     public void addItems(String eklenen) {
         String[] itemList = eklenen.split(",");
         for (String item : itemList) {
-            if (!groceryList.contains(item.trim())) {
+            if (!checkItemIsInList(item.trim())) {
                 groceryList.add(item.trim());
             } else {
                 System.out.println(item + " listenizde mevcut.");
@@ -56,7 +57,7 @@ public class MarketList {
     public void removeItems(String cikarilan) {
         String[] itemList = cikarilan.split(",");
         for (String item : itemList) {
-            if (groceryList.contains(item.trim())) {
+            if (checkItemIsInList(item.trim())) {
                 groceryList.remove(item.trim());
                 System.out.println(item + " listeden cikarildi");
             } else {
