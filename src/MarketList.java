@@ -24,11 +24,15 @@ public class MarketList {
                         break;
 
                     case "2":
-                        System.out.println("Cıkarılmasını istediğiniz elemanları giriniz: ");
-                        String cikarilan = scanner.next();
-                        removeItems(cikarilan);
-                        break;
-
+                        if (groceryList.size() == 0) {
+                            System.out.println("Liste bosken eleman cikarilamaz");
+                            continue;
+                        } else {
+                            System.out.println("Cıkarılmasını istediğiniz elemanları giriniz: ");
+                            String cikarilan = scanner.next();
+                            removeItems(cikarilan);
+                            break;
+                        }
                     default:
                         System.out.println("Uygun secim yapilmadi.");
                 }
@@ -61,7 +65,7 @@ public class MarketList {
                 groceryList.remove(item.trim());
                 System.out.println(item + " listeden cikarildi");
             } else {
-                System.out.println(item + "listenizde bulunamadi");
+                System.out.println(item + " listenizde bulunamadi");
             }
         }
     }
@@ -72,10 +76,11 @@ public class MarketList {
 
     public void printSorted() {
         Collections.sort(groceryList);
-        System.out.println("Sirali Liste: ");
+        System.out.print("Sirali Liste: ");
         for (String item : groceryList) {
-            System.out.println(item);
+            System.out.print(item + ",");
         }
+        System.out.print("\n");
     }
 
 }
